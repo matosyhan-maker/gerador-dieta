@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Generator</title>
+</head>
+<body>
+    <h1>Diet Generator</h1>
+    <form id="dietForm">
+        <label for="sex">Sex:</label><br>
+        <select id="sex" name="sex">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br><br>
+
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" required><br><br>
+
+        <label for="weight">Weight (kg):</label><br>
+        <input type="number" id="weight" name="weight" required><br><br>
+
+        <label for="height">Height (cm):</label><br>
+        <input type="number" id="height" name="height" required><br><br>
+
+        <label for="trainingDays">Training Days per Week:</label><br>
+        <input type="number" id="trainingDays" name="trainingDays" required><br><br>
+
+        <label for="objective">Objective:</label><br>
+        <select id="objective" name="objective">
+            <option value="lose">Lose Weight</option>
+            <option value="maintain">Maintain Weight</option>
+            <option value="gain">Gain Weight</option>
+        </select><br><br>
+
+        <button type="button" onclick="generateDiet()">Generate Diet</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function generateDiet() {
+            // Placeholder for diet calculation logic
+            const sex = document.getElementById('sex').value;
+            const age = document.getElementById('age').value;
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value;
+            const trainingDays = document.getElementById('trainingDays').value;
+            const objective = document.getElementById('objective').value;
+
+            // Example implementation code (to be replaced with actual calculation)
+            const diet = `Based on your input, here is a sample diet plan for ${objective} goal including mock meals.`;
+            document.getElementById('result').innerHTML = diet;
+        }
+    </script>
+</body>
+</html>
