@@ -4,54 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diet Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }
+        h1 { color: #333; }
+        form { background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        label { display: block; margin-bottom: 10px; }
+        input[type="text"], input[type="number"] { width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 3px; }
+        button { background: #5cb85c; color: white; padding: 10px; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #4cae4c; }
+    </style>
 </head>
 <body>
     <h1>Diet Generator</h1>
     <form id="dietForm">
-        <label for="sex">Sex:</label><br>
-        <select id="sex" name="sex">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select><br><br>
+        <label for="calories">Calories:</label>
+        <input type="number" id="calories" name="calories" required />
 
-        <label for="age">Age:</label><br>
-        <input type="number" id="age" name="age" required><br><br>
+        <label for="protein">Protein (g):</label>
+        <input type="number" id="protein" name="protein" required />
 
-        <label for="weight">Weight (kg):</label><br>
-        <input type="number" id="weight" name="weight" required><br><br>
+        <label for="carbs">Carbs (g):</label>
+        <input type="number" id="carbs" name="carbs" required />
 
-        <label for="height">Height (cm):</label><br>
-        <input type="number" id="height" name="height" required><br><br>
+        <label for="fat">Fat (g):</label>
+        <input type="number" id="fat" name="fat" required />
 
-        <label for="trainingDays">Training Days per Week:</label><br>
-        <input type="number" id="trainingDays" name="trainingDays" required><br><br>
-
-        <label for="objective">Objective:</label><br>
-        <select id="objective" name="objective">
-            <option value="lose">Lose Weight</option>
-            <option value="maintain">Maintain Weight</option>
-            <option value="gain">Gain Weight</option>
-        </select><br><br>
-
-        <button type="button" onclick="generateDiet()">Generate Diet</button>
+        <button type="submit">Generate Diet</button>
     </form>
 
-    <div id="result"></div>
+    <div id="dietResults"></div>
 
     <script>
-        function generateDiet() {
-            // Placeholder for diet calculation logic
-            const sex = document.getElementById('sex').value;
-            const age = document.getElementById('age').value;
-            const weight = document.getElementById('weight').value;
-            const height = document.getElementById('height').value;
-            const trainingDays = document.getElementById('trainingDays').value;
-            const objective = document.getElementById('objective').value;
+        document.getElementById('dietForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const calories = parseFloat(document.getElementById('calories').value);
+            const protein = parseFloat(document.getElementById('protein').value);
+            const carbs = parseFloat(document.getElementById('carbs').value);
+            const fat = parseFloat(document.getElementById('fat').value);
 
-            // Example implementation code (to be replaced with actual calculation)
-            const diet = `Based on your input, here is a sample diet plan for ${objective} goal including mock meals.`;
-            document.getElementById('result').innerHTML = diet;
-        }
+            const proteinCalories = protein * 4;
+            const carbsCalories = carbs * 4;
+            const fatCalories = fat * 9;
+            const totalCalories = proteinCalories + carbsCalories + fatCalories;
+
+            if (totalCalories !== calories) {
+                alert('The total calories do not match the macronutrient breakdown!');
+                return;
+            }
+
+            document.getElementById('dietResults').innerHTML = `<h2>Your Diet Plan</h2><p>Protein: ${protein}g (${proteinCalories} cal)</p><p>Carbs: ${carbs}g (${carbsCalories} cal)</p><p>Fat: ${fat}g (${fatCalories} cal)</p>`;
+        });
     </script>
 </body>
 </html>
